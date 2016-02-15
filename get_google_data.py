@@ -3,10 +3,10 @@ import datetime as dt
 import pandas as pd
 
 def get_google_data(symbol, period, window, exch = 'NYSE'):
-    url_root = 'http://www.google.com/finance/getprices?i=' 
+    url_root = ('http://www.google.com/finance/getprices?i=' 
                 + str(period) + '&p=' + str(window)
                 + 'd&f=d,o,h,l,c,v&df=cpct&x=' + exch.upper() 
-                + '&q=' + symbol.upper()
+                + '&q=' + symbol.upper())
     response = urllib.request.urlopen(url_root)
     data=response.read().decode().split('\n')       #decode() required for Python 3
     data=pd.DataFrame([data[i].split(',') for i in range(len(data)-1)])
