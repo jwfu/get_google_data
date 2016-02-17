@@ -28,4 +28,4 @@ def get_google_data(symbol, period, window, exch = 'NYSE'):
         
     df=df.drop('DATE', 1)
     
-    return df, url_root
+    return df
