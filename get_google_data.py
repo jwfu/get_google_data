@@ -23,9 +23,10 @@ def get_google_data(symbol, period, window, exch = 'NYSE'):
         else:
             ind[i] = anchor_time +dt.timedelta(seconds = (period * int(df['DATE'].ix[i])))
     df.index = ind
-    for i in range(1,6): #shitty implementation because to_numeric is pd but does not accept df
-        df.ix[:,i]=pd.to_numeric(df.ix[:,i])
         
     df=df.drop('DATE', 1)
+
+    for column in df.columns:                #shitty implementation because to_numeric is pd but does not accept df
+        df[column]=pd.to_numeric(df[column])
     
     return df
